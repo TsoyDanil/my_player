@@ -11,6 +11,8 @@ function App() {
     {name: 'Hurt', author: 'Johnny Cash', src: "./music/Johnny Cash - Hurt.mp3"}
   ])
 
+  const [range, setRange] = useState(0)
+
   const [isPlaying, setIsPlaying] = useState(false)
 
   const audioRef = useRef(null)
@@ -27,13 +29,16 @@ function App() {
     setIsPlaying(!isPlaying)
   }
 
+  const sliderOnChange = () => {
+    
+  }
+
   const turnNextSong = (currentSongName) => {
     let index = songAlbum.findIndex(song => song.name === currentSongName)
     index = index + 1
     if (index >= songAlbum.length){
       index = 0
     }
-
     setCurrentSong(songAlbum[index])
     setIsPlaying(true)
     audioRef.current.autoplay = true
@@ -50,17 +55,30 @@ function App() {
     audioRef.current.autoplay = true
   }
 
+  const showTime = () => {
+    console.log(audioRef.current.currentTime)
+  }
+
+  const slideHandler = () => {
+    const sliderTime = (audioRef.current.currentTime / audioRef.current.duration) * 100
+    setRange(sliderTime)
+  }
+
   const audio = 
       <audio
       ref = {audioRef}
       src= {currentSong.src}
       onEnded={() => {turnNextSong(currentSong.name)}}
+      onTimeUpdate = {slideHandler}
     />
 
   const musicInfo = 
   <Musicinfo
     musicName = {currentSong.name}
     musicAuthor = {currentSong.author}
+    sliderValue = {range}
+    onChange = {sliderOnChange}
+    
   />
   
   const controlMenu =  
