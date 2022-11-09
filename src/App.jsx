@@ -77,7 +77,6 @@ function App() {
         {audio}
         {musicInfo}
         {controlMenu}
-        <p>asfasfF</p>
       </div>
     </div>
   );
