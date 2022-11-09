@@ -1,0 +1,17 @@
+.Musicinfo_container{
+    margin-top: 20px;
+    width: 500px;
+    height: 500px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Music_name{
+    margin-bottom: 0;
+}
+
+.Music_author{
+    margin: 5px 0;
+}
