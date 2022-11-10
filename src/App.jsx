@@ -6,12 +6,16 @@ import './App.css';
 
 function App() {
   const [songAlbum, setAlbum] = useState([
-    {name: 'Fields of Verdun', author: 'Sabaton', src: "./music/Sabaton - Fields of Verdun.mp3"}, 
-    {name: 'Father And Son', author: 'Cat Stevens', src: "./music/Cat Stevens - Father And Son.mp3"},
-    {name: 'Hurt', author: 'Johnny Cash', src: "./music/Johnny Cash - Hurt.mp3"}
+    {name: 'Fields of Verdun', author: 'Sabaton', src: "./music/Sabaton - Fields of Verdun.mp3", image: 'https://i1.sndcdn.com/artworks-0IhPEXSAPYKk-0-t240x240.jpg'}, 
+    {name: 'Father And Son', author: 'Cat Stevens', src: "./music/Cat Stevens - Father And Son.mp3", image: 'https://images.genius.com/f6265a2ae92f9e485a7680801a72953a.500x500x1.jpg'},
+    {name: 'Hurt', author: 'Johnny Cash', src: "./music/Johnny Cash - Hurt.mp3", image: 'https://i.scdn.co/image/ab67616d0000b2736f4f62da3d811b6501a69ffa'}
   ])
 
   const [range, setRange] = useState(0)
+
+  const [trackDuration, setTrackDuration] = useState(0)
+
+  const [currentTime, setCurrentTime] = useState(0)
 
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -59,10 +63,12 @@ function App() {
     console.log(audioRef.current.currentTime)
   }
 
-  const slideHandler = () => {
+  const handleChanges = () => {
     const sliderTime = (audioRef.current.currentTime / audioRef.current.duration) * 100
     if (!isNaN(sliderTime)){
       setRange(sliderTime)
+      setTrackDuration(Math.floor(audioRef.current.duration))
+      setCurrentTime(Math.floor(audioRef.current.currentTime))
     }
   }
 
@@ -71,16 +77,18 @@ function App() {
       ref = {audioRef}
       src= {currentSong.src}
       onEnded={() => {turnNextSong(currentSong.name)}}
-      onTimeUpdate = {slideHandler}
+      onTimeUpdate = {handleChanges}
     />
 
   const musicInfo = 
   <Musicinfo
     musicName = {currentSong.name}
     musicAuthor = {currentSong.author}
+    songImage = {currentSong.image}
     sliderValue = {range}
     onChange = {sliderOnChange}
-    
+    trackDuration = {trackDuration}
+    currentTime = {currentTime}
   />
   
   const controlMenu =  
