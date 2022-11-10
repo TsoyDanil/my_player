@@ -21,7 +21,7 @@
 }
 
 .main_action_button_play:active{
-    transform: scale(0.7);
+    transform: scale(0.8);
 }
 
 .main_action_button_pause{
@@ -30,7 +30,7 @@
     margin: 10px;
     width: 80px;
     height: 80px;
-    background: url('./controlMenuImages/pause-button.png');
+    background: url('./controlMenuImages/stop.png');
     background-repeat: no-repeat;
     background-size: cover;
     transition: 0.5s;
@@ -41,7 +41,7 @@
 }
 
 .main_action_button_pause:active{
-    transform: scale(0.7);
+    transform: scale(0.8);
 }
 
 .skip_button{
@@ -59,7 +59,7 @@
 }
 
 .skip_button:active{
-    transform: scale(0.7);
+    transform: scale(0.8s);
 }
 
 .prev_slip{
