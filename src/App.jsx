@@ -67,8 +67,12 @@ function App() {
     const sliderTime = (audioRef.current.currentTime / audioRef.current.duration) * 100
     if (!isNaN(sliderTime)){
       setRange(sliderTime)
-      setTrackDuration(Math.floor(audioRef.current.duration))
-      setCurrentTime(Math.floor(audioRef.current.currentTime))
+      const minuteDuration = Math.floor(audioRef.current.duration / 60) 
+      const secondsDuration = Math.floor(audioRef.current.duration - minuteDuration*60)
+      const currentMinute = Math.floor(audioRef.current.currentTime / 60) 
+      const currentSecond = Math.floor(audioRef.current.currentTime - currentMinute*60)
+      setTrackDuration(`${minuteDuration}:${secondsDuration}`)
+      setCurrentTime(`${currentMinute}:${currentSecond}`)
     }
   }
 
