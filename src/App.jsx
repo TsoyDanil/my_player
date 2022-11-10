@@ -71,8 +71,37 @@ function App() {
       const secondsDuration = Math.floor(audioRef.current.duration - minuteDuration*60)
       const currentMinute = Math.floor(audioRef.current.currentTime / 60) 
       const currentSecond = Math.floor(audioRef.current.currentTime - currentMinute*60)
-      setTrackDuration(`${minuteDuration}:${secondsDuration}`)
-      setCurrentTime(`${currentMinute}:${currentSecond}`)
+      let minuteHolder = ''
+      if (minuteDuration >= 10){
+        minuteHolder = minuteDuration
+      } else{
+        minuteHolder = '0' + minuteDuration
+      }
+      let secondsHolder = ''
+      if (secondsDuration >= 10){
+        secondsHolder = secondsDuration
+      } else{
+        secondsHolder = '0' + secondsDuration
+      }
+      setTrackDuration(`${minuteHolder}:${secondsHolder}`)
+
+      if (currentMinute < 1){
+        minuteHolder = '0' + '0'
+      } else if(currentMinute >= 1 && currentMinute < 10){
+        minuteHolder = '0' + currentMinute
+      } else{
+        minuteHolder = currentMinute
+      }
+
+      if (currentSecond < 1){
+        secondsHolder = '0' + '0'
+      } else if(currentSecond >= 1 && currentSecond < 10){
+        secondsHolder = '0' + currentSecond
+      } else{
+        secondsHolder = currentSecond
+      }
+
+      setCurrentTime(`${minuteHolder}:${secondsHolder}`)
     }
   }
 
