@@ -4,9 +4,9 @@ import './Controlmenu.css'
 const Controlmenu = (props) => {
     return (
         <div className="Controlmenu">
-            <button className="skip_button" onClick={props.turnPrevSong}>PREV</button>
-            <button className="main_action_button" onClick={props.mainAction}>{props.mainActionText}</button>
-            <button className="skip_button" onClick={props.turnNextSong}>NEXT</button>
+            <button className="skip_button prev_slip" onClick={props.turnPrevSong}></button>
+            <button className={props.mainActionClassName} onClick={props.mainAction}></button>
+            <button className="skip_button next_skip" onClick={props.turnNextSong}></button>
         </div>
     )
 }

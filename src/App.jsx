@@ -61,7 +61,9 @@ function App() {
 
   const slideHandler = () => {
     const sliderTime = (audioRef.current.currentTime / audioRef.current.duration) * 100
-    setRange(sliderTime)
+    if (!isNaN(sliderTime)){
+      setRange(sliderTime)
+    }
   }
 
   const audio = 
@@ -83,7 +85,7 @@ function App() {
   
   const controlMenu =  
   <Controlmenu
-      mainActionText = {isPlaying ? "STOP" : "PLAY"}
+      mainActionClassName = {!isPlaying ? 'main_action_button_play' : 'main_action_button_pause'}
       mainAction = {playStop}
       turnPrevSong = {() => {turnPrevSong(currentSong.name)}}
       turnNextSong = {() => {turnNextSong(currentSong.name)}}

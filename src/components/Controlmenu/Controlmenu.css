@@ -3,19 +3,72 @@
     align-items: center
 }
 
-.main_action_button{
+.main_action_button_play{
+    border: none;
     cursor: pointer;
     margin: 10px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background: url('./images/play-button-circled.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.5s;
+}
+
+.main_action_button_play:hover{
+    transform: scale(1.1);
+}
+
+.main_action_button_play:active{
+    transform: scale(0.7);
+}
+
+.main_action_button_pause{
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+    background: url('./images/pause-button.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.5s;
+}
+
+.main_action_button_pause:hover{
+    transform: scale(1.1);
+}
+
+.main_action_button_pause:active{
+    transform: scale(0.7);
 }
 
 .skip_button{
+    border: none;
     cursor: pointer;
     margin: 10px;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    transition: 0.5s;
 }
 
+.skip_button:hover{
+    transform: scale(1.1);
+}
+
+.skip_button:active{
+    transform: scale(0.7);
+}
+
+.prev_slip{
+    background: url('./images/left-skip.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.next_skip{
+    background: url('./images/right-skip.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
