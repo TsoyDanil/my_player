@@ -10,7 +10,7 @@
     margin: 10px;
     width: 80px;
     height: 80px;
-    background: url('./images/play-button-circled.png');
+    background: url('./controlMenuImages/play-button-circled.png');
     background-repeat: no-repeat;
     background-size: cover;
     transition: 0.5s;
@@ -30,7 +30,7 @@
     margin: 10px;
     width: 80px;
     height: 80px;
-    background: url('./images/pause-button.png');
+    background: url('./controlMenuImages/pause-button.png');
     background-repeat: no-repeat;
     background-size: cover;
     transition: 0.5s;
@@ -63,13 +63,13 @@
 }
 
 .prev_slip{
-    background: url('./images/left-skip.png');
+    background: url('./controlMenuImages/left-skip.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .next_skip{
-    background: url('./images/right-skip.png');
+    background: url('./controlMenuImages/right-skip.png');
     background-repeat: no-repeat;
     background-size: cover;
 }

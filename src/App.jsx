@@ -13,9 +13,9 @@ function App() {
 
   const [range, setRange] = useState(0)
 
-  const [trackDuration, setTrackDuration] = useState(0)
+  const [trackDuration, setTrackDuration] = useState('00:00')
 
-  const [currentTime, setCurrentTime] = useState(0)
+  const [currentTime, setCurrentTime] = useState('00:00')
 
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -33,8 +33,9 @@ function App() {
     setIsPlaying(!isPlaying)
   }
 
-  const sliderOnChange = () => {
-    
+  const changeTime = (value) => {
+    audioRef.current.currentTime = value/100 * audioRef.current.duration
+    setRange(value)
   }
 
   const turnNextSong = (currentSongName) => {
@@ -59,10 +60,6 @@ function App() {
     audioRef.current.autoplay = true
   }
 
-  const showTime = () => {
-    console.log(audioRef.current.currentTime)
-  }
-
   const handleChanges = () => {
     const sliderTime = (audioRef.current.currentTime / audioRef.current.duration) * 100
     if (!isNaN(sliderTime)){
@@ -72,17 +69,17 @@ function App() {
       const currentMinute = Math.floor(audioRef.current.currentTime / 60) 
       const currentSecond = Math.floor(audioRef.current.currentTime - currentMinute*60)
       let minuteHolder = ''
-      if (minuteDuration >= 10){
-        minuteHolder = minuteDuration
-      } else{
-        minuteHolder = '0' + minuteDuration
-      }
+        if (minuteDuration >= 10){
+          minuteHolder = minuteDuration
+        } else{
+          minuteHolder = '0' + minuteDuration
+        }
       let secondsHolder = ''
-      if (secondsDuration >= 10){
-        secondsHolder = secondsDuration
-      } else{
-        secondsHolder = '0' + secondsDuration
-      }
+        if (secondsDuration >= 10){
+          secondsHolder = secondsDuration
+        } else{
+          secondsHolder = '0' + secondsDuration
+        }
       setTrackDuration(`${minuteHolder}:${secondsHolder}`)
 
       if (currentMinute < 1){
@@ -119,7 +116,7 @@ function App() {
     musicAuthor = {currentSong.author}
     songImage = {currentSong.image}
     sliderValue = {range}
-    onChange = {sliderOnChange}
+    onChange = {(e) => {changeTime(e.target.value)}}
     trackDuration = {trackDuration}
     currentTime = {currentTime}
   />
