@@ -10,7 +10,7 @@ function App() {
     {name: 'Father And Son', author: 'Cat Stevens', src: "./music/Cat Stevens - Father And Son.mp3", image: 'https://images.genius.com/f6265a2ae92f9e485a7680801a72953a.500x500x1.jpg'},
     {name: 'Hurt', author: 'Johnny Cash', src: "./music/Johnny Cash - Hurt.mp3", image: 'https://i.scdn.co/image/ab67616d0000b2736f4f62da3d811b6501a69ffa'}
   ])
-
+// MAIN STATES OF APP
   const [range, setRange] = useState(0)
 
   const [trackDuration, setTrackDuration] = useState('00:00')
@@ -23,6 +23,8 @@ function App() {
 
   const [currentSong, setCurrentSong] = useState(songAlbum[0])
 
+// START PLAYING IF NOT. STOP PLAYING IF ALREADY PLAYING
+
   const playStop = () => {
     if (isPlaying){
       audioRef.current.pause()
@@ -33,10 +35,14 @@ function App() {
     setIsPlaying(!isPlaying)
   }
 
+  // GET VALUE FROM INPUT RANGE AND GIVE IT TO SONG TO SKIP TIME
+
   const changeTime = (value) => {
     audioRef.current.currentTime = value/100 * audioRef.current.duration
     setRange(value)
   }
+
+  // GET CURRENT SONG NAME FIND IT IN ARRAY OF SONGS ON SWITCH TO NEXT SONG
 
   const turnNextSong = (currentSongName) => {
     let index = songAlbum.findIndex(song => song.name === currentSongName)
@@ -49,6 +55,8 @@ function App() {
     audioRef.current.autoplay = true
   }
 
+  // GET CURRENT SONG NAME FIND IT IN ARRAY OF SONGS ON SWITCH TO PREV SONG
+
   const turnPrevSong = (currentSongName) => {
     let index = songAlbum.findIndex(song => song.name === currentSongName)
     index = index - 1
@@ -59,6 +67,8 @@ function App() {
     setIsPlaying(true)
     audioRef.current.autoplay = true
   }
+
+  // CREATE TWO HOLDERS FOR SECONDS AND MINUTES. WITH CHECKERS GIVE IT PROPER VALUE TO SHOW NEEDED INFO ON SCREEN
 
   const handleChanges = () => {
     const sliderTime = (audioRef.current.currentTime / audioRef.current.duration) * 100
@@ -104,22 +114,22 @@ function App() {
 
   const audio = 
       <audio
-      ref = {audioRef}
-      src= {currentSong.src}
-      onEnded={() => {turnNextSong(currentSong.name)}}
-      onTimeUpdate = {handleChanges}
-    />
+        ref = {audioRef}
+        src= {currentSong.src}
+        onEnded={() => {turnNextSong(currentSong.name)}}
+        onTimeUpdate = {handleChanges}
+      />
 
   const musicInfo = 
-  <Musicinfo
-    musicName = {currentSong.name}
-    musicAuthor = {currentSong.author}
-    songImage = {currentSong.image}
-    sliderValue = {range}
-    onChange = {(e) => {changeTime(e.target.value)}}
-    trackDuration = {trackDuration}
-    currentTime = {currentTime}
-  />
+    <Musicinfo
+        musicName = {currentSong.name}
+        musicAuthor = {currentSong.author}
+        songImage = {currentSong.image}
+        sliderValue = {range}
+        onChange = {(e) => {changeTime(e.target.value)}}
+        trackDuration = {trackDuration}
+        currentTime = {currentTime}
+    />
   
   const controlMenu =  
   <Controlmenu
